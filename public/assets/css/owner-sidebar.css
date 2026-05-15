@@ -470,3 +470,8 @@
   line-height: 19.5px;
   white-space: nowrap;
 }
+
+.sidebar a {
+    text-decoration: none;
+    color: inherit;
+}

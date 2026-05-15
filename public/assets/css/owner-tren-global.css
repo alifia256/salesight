@@ -1,0 +1,185 @@
+.tren-global-content {
+    padding: 28px;
+    width: 100%;
+}
+
+/* HEADER */
+
+.tren-global-header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 24px;
+}
+
+.tren-global-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.tren-global-subtitle {
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* CARD */
+
+.tren-global-chart-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 8px #0000000a;
+}
+
+.tren-global-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.tren-global-chart-placeholder {
+    margin-top: 20px;
+    height: 300px;
+    background: #f8fafc;
+    border-radius: 12px;
+}
+
+/* BOTTOM CARD */
+
+.tren-global-bottom-cards {
+    display: flex;
+    gap: 20px;
+}
+
+.tren-global-info-card {
+    flex: 1;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    padding: 24px;
+    box-shadow: 0px 2px 8px #0000000a;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.tren-global-info-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* COMPARISON */
+
+.tren-global-comparison {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.tren-global-comparison.active {
+    background: #eef1ff;
+    border-color: #d8dfff;
+}
+
+.tren-global-comparison-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #314cff;
+}
+
+.tren-global-comparison-title.gray {
+    color: #64748b;
+}
+
+.tren-global-comparison-value {
+    height: 30px;
+    margin-top: 8px;
+}
+
+/* ALERT */
+
+.tren-global-alert {
+    height: 68px;
+    border-radius: 12px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+}
+
+/* INSIGHT */
+
+.tren-global-insight {
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.tren-global-insight.warning {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+}
+
+.tren-global-insight.danger {
+    background: #fff1f2;
+    border: 1px solid #fecdd3;
+}
+
+.tren-global-insight-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tren-global-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tren-global-icon img {
+    width: 15px;
+    height: 15px;
+}
+
+.tren-global-icon.orange {
+    background: #d97706;
+}
+
+.tren-global-icon.red {
+    background: #dc2626;
+}
+
+.tren-global-insight-text {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.orange-text {
+    color: #92400e;
+}
+
+.red-text {
+    color: #9f1239;
+}
+
+/* AVERAGE */
+
+.tren-global-average {
+    background: #eef1ff;
+    border: 1px solid #d8dfff;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.tren-global-average-value {
+    height: 27px;
+    margin-top: 8px;
+}

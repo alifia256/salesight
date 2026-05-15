@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/owner-sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owner-header.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owner-dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owner-tren-global.css') }}">
 </head>
 <body>
     <div class="layout-wrapper">

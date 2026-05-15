@@ -32,54 +32,99 @@
                 <div class="paragraph">
                     <div class="navigasi">NAVIGASI</div>
                 </div>
-                <div class="button"><img class="menu-icon" src="{{ asset('img/dashboard.png') }}" />
+                <!-- Dashboard -->
+                <a href="{{ route('owner.dashboard') }}"
+                    class="{{ request()->routeIs('owner.dashboard') ? 'button' : 'button-2' }}">
+
+                    <img class="menu-icon" src="{{ asset('img/dashboard.png') }}" />
+
                     <div class="text-2">
-                        <div class="text-wrapper-3">Dashboard</div>
+                        <div class="text-wrapper-3">
+                            Dashboard
+                        </div>
                     </div>
+
                     <div class="div-4"></div>
-                </div>
-                <div class="button-2">
+
+                </a>
+
+                <!-- Tren Penjualan Global -->
+                <a href="{{ route('owner.tren-global') }}"
+                    class="{{ request()->routeIs('owner.tren-global') ? 'button' : 'button-2' }}">
+
                     <div class="text-3">
                         <div class="icon-2">
                             <img class="menu-icon" src="{{ asset('img/pglobal.png') }}" />
                         </div>
                     </div>
+
                     <div class="text-4">
-                        <div class="text-wrapper-4">Tren Penjualan Global</div>
+                        <div class="text-wrapper-4">
+                            Tren Penjualan Global
+                        </div>
                     </div>
-                </div>
-                <div class="button-2">
+
+                </a>
+
+                <!-- Tren Penjualan Toko -->
+                <a href="#" class="button-2">
+
                     <div class="text-3">
                         <div class="icon-2">
                             <img class="menu-icon" src="{{ asset('img/ptoko.png') }}" />
                         </div>
                     </div>
+
                     <div class="text-4">
-                        <div class="text-wrapper-5">Tren Penjualan Toko</div>
+                        <div class="text-wrapper-5">
+                            Tren Penjualan Toko
+                        </div>
                     </div>
-                </div>
-                <div class="button-2">
+
+                </a>
+
+                <!-- Kontribusi Toko -->
+                <a href="#" class="button-2">
+
                     <div class="text-3">
                         <div class="icon-2">
                             <img class="menu-icon" src="{{ asset('img/kontribusitoko.png') }}" />
                         </div>
                     </div>
+
                     <div class="text-4">
-                        <div class="text-wrapper-6">Kontribusi Toko</div>
+                        <div class="text-wrapper-6">
+                            Kontribusi Toko
+                        </div>
                     </div>
-                </div>
-                <div class="button-2">
+
+                </a>
+
+                <!-- Kelola Cabang -->
+                <a href="#" class="button-2">
+
                     <img class="menu-icon" src="{{ asset('img/kelolacabang.png') }}" />
+
                     <div class="text-4">
-                        <div class="text-wrapper-7">Kelola Cabang</div>
+                        <div class="text-wrapper-7">
+                            Kelola Cabang
+                        </div>
                     </div>
-                </div>
-                <div class="button-2">
+
+                </a>
+
+                <!-- Daftar Toko -->
+                <a href="#" class="button-2">
+
                     <img class="menu-icon" src="{{ asset('img/daftartoko.png') }}" />
+
                     <div class="text-4">
-                        <div class="text-wrapper-8">Daftar Toko</div>
+                        <div class="text-wrapper-8">
+                            Daftar Toko
+                        </div>
                     </div>
-                </div>
+
+                </a>
             </div>
             <div class="div-5">
                 <div class="div-6">
@@ -91,9 +136,9 @@
                     </div>
                 </div>
                 <div class="button-3">
-                    <div class="icon-3"><img class="vector-8" src="img/image.svg" />
-                        <img class="vector-4" src="img/vector-6.svg" />
-                        <img class="vector-9" src="img/vector-9.svg" />
+                    <div class="icon-3"><img class="vector-8" src="{{ asset('img/logout.png') }}" />
+                        <img class="vector-4" src="" />
+                        <img class="vector-9" src="" />
                     </div>
                     <div class="text-wrapper-11"> Keluar</div>
                 </div>
@@ -101,4 +146,5 @@
         </div>
     </div>
 </body>
+
 </html>
