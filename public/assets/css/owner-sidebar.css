@@ -221,14 +221,6 @@
   white-space: nowrap;
 }
 
-.container .div-4 {
-  position: relative;
-  width: 6px;
-  height: 6px;
-  background-color: #314cff;
-  border-radius: 3px;
-}
-
 .container .button-2 {
   display: flex;
   width: 227px;
