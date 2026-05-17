@@ -32,22 +32,28 @@
                 <div class="paragraph">
                     <div class="navigasi">NAVIGASI</div>
                 </div>
+
                 <!-- Dashboard -->
                 <a href="{{ route('owner.dashboard') }}"
-                    class="{{ request()->routeIs('owner.dashboard') ? 'button' : 'button-2' }}">
+                    class="{{ request()->routeIs('owner.dashboard') ? 'button active-menu' : 'button-2' }}">
 
                     <img class="menu-icon" src="{{ asset('img/dashboard.png') }}" />
 
                     <div class="text-2">
-                        <div class="text-wrapper-3">
+                        <div class="sidebar-menu-text">
                             Dashboard
                         </div>
                     </div>
+
+                    @if (request()->routeIs('owner.dashboard'))
+                        <div class="div-4"></div>
+                    @endif
+
                 </a>
 
                 <!-- Tren Penjualan Global -->
                 <a href="{{ route('owner.tren-global') }}"
-                    class="{{ request()->routeIs('owner.tren-global') ? 'button' : 'button-2' }}">
+                    class="{{ request()->routeIs('owner.tren-global') ? 'button active-menu' : 'button-2' }}">
 
                     <div class="text-3">
                         <div class="icon-2">
@@ -56,16 +62,19 @@
                     </div>
 
                     <div class="text-4">
-                        <div class="text-wrapper-4">
+                        <div class="sidebar-menu-text">
                             Tren Penjualan Global
                         </div>
                     </div>
 
-                </a>
+                    @if (request()->routeIs('owner.tren-global'))
+                        <div class="div-4"></div>
+                    @endif
 
+                </a>
                 <!-- Tren Penjualan Toko -->
                 <a href="{{ route('owner.tren-toko') }}"
-                    class="{{ request()->routeIs('owner.tren-toko') ? 'button' : 'button-2' }}">
+                    class="{{ request()->routeIs('owner.tren-toko') ? 'button active-menu' : 'button-2' }}">
 
                     <div class="text-3">
                         <div class="icon-2">
@@ -74,7 +83,7 @@
                     </div>
 
                     <div class="text-4">
-                        <div class="text-wrapper-5">
+                        <div class="sidebar-menu-text">
                             Tren Penjualan Toko
                         </div>
                     </div>
