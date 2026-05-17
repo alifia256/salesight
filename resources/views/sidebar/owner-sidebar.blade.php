@@ -148,10 +148,8 @@
                 </div>
                 <div class="button-3">
                     <div class="icon-3"><img class="vector-8" src="{{ asset('img/logout.png') }}" />
-                        <img class="vector-4" src="" />
-                        <img class="vector-9" src="" />
                     </div>
-                    <div class="text-wrapper-11"> Keluar</div>
+                    <div class="text-wrapper-11">Keluar</div>
                 </div>
             </div>
         </div>
