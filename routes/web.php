@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+// LANDING PAGE
+Route::get('/', function () {
+    return view('landing.landing');
+});
+
 // OWNER
 Route::get('/owner/dashboard', function () {
     return view('owner.dashboard');
