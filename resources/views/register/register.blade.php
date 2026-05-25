@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
 </head>
 
@@ -20,6 +24,9 @@
             <div class="container"></div>
             <div class="div"></div>
             <div class="container-2"></div>
+
+            {{-- Decorative grid dots --}}
+            <div class="grid-dots"></div>
 
             <div class="container-wrapper">
 
@@ -39,8 +46,6 @@
                 </div>
 
                 <div class="container-4">
-
-                    
 
                     <div class="container-6">
 
@@ -63,11 +68,9 @@
         <div class="container-9">
 
             <div class="div-wrapper">
-
                 <div class="icon-3">
-                    ✓
+                    <i data-lucide="database"></i>
                 </div>
-
             </div>
 
             <div class="container-10">
@@ -119,7 +122,7 @@
 
             <div class="div-wrapper">
                 <div class="icon-3">
-                    ⌘
+                    <i data-lucide="layout-dashboard"></i>
                 </div>
             </div>
 
@@ -182,12 +185,9 @@
 
                     <div class="container-22">
 
+                        {{-- POIN 2: ganti icon-5 jadi lucide logo lebih besar --}}
                         <div class="icon-5">
-                            <img class="vector-3" src="{{ asset('img/register/vector-13.svg') }}">
-                            <img class="vector-4" src="{{ asset('img/register/vector-4.svg') }}">
-                            <img class="vector-5" src="{{ asset('img/register/vector-24.svg') }}">
-                            <img class="vector-6" src="{{ asset('img/register/vector-12.svg') }}">
-                            <img class="vector-7" src="{{ asset('img/register/vector-2.svg') }}">
+                            <i data-lucide="zap" class="badge-icon"></i>
                         </div>
 
                         <div class="text-wrapper-7">
@@ -215,6 +215,17 @@
 
                     @csrf
 
+                    {{-- Error messages --}}
+                    @if ($errors->any())
+                        <div class="alert-error">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <!-- ROLE -->
                     <div class="container-23">
 
@@ -226,14 +237,16 @@
 
                         <div class="container-24">
 
-                            <label class="button">
+                            {{-- POIN 1: ganti img container-26 jadi lucide layout-dashboard --}}
+                            <label class="button" id="label-owner">
 
                                 <input type="radio" name="role" value="owner" hidden>
 
-                                <div class="container-25"></div>
+                                <div class="container-25 radio-dot"></div>
 
-                                <img class="container-26"
-                                    src="{{ asset('img/register/container-2.svg') }}">
+                                <div class="role-card-icon owner-icon">
+                                    <i data-lucide="layout-dashboard"></i>
+                                </div>
 
                                 <div class="text-6">
                                     <div class="text-wrapper-10">
@@ -255,25 +268,16 @@
 
                             </label>
 
-                            <label class="button-2">
+                            <label class="button-2" id="label-admin">
 
                                 <input type="radio" name="role" value="admin" hidden>
 
-                                <div class="container-25"></div>
+                                <div class="container-25 radio-dot"></div>
 
                                 <div class="container-27">
-
                                     <div class="icon">
-                                        <img class="vector-8"
-                                            src="{{ asset('img/register/vector-42.svg') }}">
-
-                                        <img class="vector-9"
-                                            src="{{ asset('img/register/vector-8.svg') }}">
-
-                                        <img class="vector-10"
-                                            src="{{ asset('img/register/vector-41.svg') }}">
+                                        <i data-lucide="database"></i>
                                     </div>
-
                                 </div>
 
                                 <div class="text-8">
@@ -333,6 +337,7 @@
                                     name="name"
                                     class="input-field"
                                     placeholder="Masukkan nama lengkap Anda"
+                                    value="{{ old('name') }}"
                                     required
                                 >
 
@@ -360,6 +365,7 @@
                                     name="email"
                                     class="input-field"
                                     placeholder="nama@perusahaan.com"
+                                    value="{{ old('email') }}"
                                     required
                                 >
 
@@ -385,10 +391,18 @@
                                 <input
                                     type="password"
                                     name="password"
+                                    id="password"
                                     class="input-field"
                                     placeholder="Minimal 8 karakter"
                                     required
                                 >
+
+                                <button type="button" class="toggle-password" onclick="togglePassword('password', this)" aria-label="Tampilkan password">
+                                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </button>
 
                             </div>
 
@@ -412,13 +426,92 @@
                                 <input
                                     type="password"
                                     name="password_confirmation"
+                                    id="password_confirmation"
                                     class="input-field"
                                     placeholder="Ulangi password Anda"
                                     required
                                 >
 
+                                <button type="button" class="toggle-password" onclick="togglePassword('password_confirmation', this)" aria-label="Tampilkan konfirmasi password">
+                                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </button>
+
                             </div>
 
+                        </div>
+
+                    </div>
+
+                    <!-- POIN 3 & 4: ROLE EXTRA CARD — muncul kondisional via JS -->
+
+                    <!-- CARD OWNER: Informasi Toko (hijau) -->
+                    <div class="role-extra-card card-owner" id="card-owner" style="display:none;">
+
+                        <div class="role-extra-header">
+                            <div class="role-extra-icon owner-extra-icon">
+                                <i data-lucide="store"></i>
+                            </div>
+                            <div class="role-extra-title-group">
+                                <div class="role-extra-title">Owner — Informasi Toko</div>
+                                <div class="role-extra-subtitle">Daftarkan bisnis Anda di Salesight</div>
+                            </div>
+                        </div>
+
+                        <div class="role-extra-field">
+                            <label class="role-extra-label">
+                                Nama Toko / Bisnis <span class="required-star">*</span>
+                            </label>
+                            <div class="role-extra-input-wrap">
+                                <i data-lucide="building-2" class="input-icon"></i>
+                                <input
+                                    type="text"
+                                    name="store_name"
+                                    id="store_name"
+                                    class="input-field role-extra-input"
+                                    placeholder="Contoh: Toko Sumber Makmur"
+                                    value="{{ old('store_name') }}"
+                                >
+                            </div>
+                            <p class="role-extra-hint">Nama ini akan tampil di dashboard dan laporan bisnis Anda.</p>
+                        </div>
+
+                    </div>
+
+                    <!-- CARD ADMIN: Kode Akses Cabang (ungu) -->
+                    <div class="role-extra-card card-admin" id="card-admin" style="display:none;">
+
+                        <div class="role-extra-header">
+                            <div class="role-extra-icon admin-extra-icon">
+                                <i data-lucide="git-branch"></i>
+                            </div>
+                            <div class="role-extra-title-group">
+                                <div class="role-extra-title">Admin — Kode Akses Cabang</div>
+                                <div class="role-extra-subtitle">Diperlukan untuk terhubung ke cabang</div>
+                            </div>
+                        </div>
+
+                        <div class="role-extra-field">
+                            <label class="role-extra-label">
+                                Kode Cabang <span class="required-star">*</span>
+                                <span class="info-tooltip" title="Kode cabang diberikan oleh owner bisnis Anda">
+                                    <i data-lucide="info" class="info-icon"></i>
+                                </span>
+                            </label>
+                            <div class="role-extra-input-wrap">
+                                <i data-lucide="key-round" class="input-icon"></i>
+                                <input
+                                    type="text"
+                                    name="branch_code"
+                                    id="branch_code"
+                                    class="input-field role-extra-input"
+                                    placeholder="Masukkan kode cabang"
+                                    value="{{ old('branch_code') }}"
+                                >
+                            </div>
+                            <p class="role-extra-hint">Gunakan kode cabang yang diberikan oleh owner bisnis Anda.</p>
                         </div>
 
                     </div>
@@ -431,13 +524,7 @@
                         </div>
 
                         <div class="icon-8">
-
-                            <img class="vector-21"
-                                src="{{ asset('img/register/vector-29.svg') }}">
-
-                            <img class="vector-22"
-                                src="{{ asset('img/register/vector-30.svg') }}">
-
+                            <i data-lucide="arrow-right" class="btn-arrow"></i>
                         </div>
 
                     </button>
@@ -453,9 +540,9 @@
                             Sudah punya akun?
                         </span>
 
-            <a href="#" class="text-wrapper-18">
-                Login di sini
-            </a>
+                        <a href="/login" class="text-wrapper-18">
+                            Login di sini
+                        </a>
 
                     </p>
 
@@ -468,6 +555,66 @@
     </div>
 
 </div>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script>
+// init lucide icons
+lucide.createIcons();
+
+function togglePassword(fieldId, btn) {
+    const input = document.getElementById(fieldId);
+    const isHidden = input.type === 'password';
+    input.type = isHidden ? 'text' : 'password';
+    btn.querySelector('.eye-icon').style.opacity = isHidden ? '0.4' : '1';
+}
+
+// Role card selection + show/hide extra cards
+document.querySelectorAll('input[name="role"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+        // highlight role card
+        document.querySelectorAll('.button, .button-2').forEach(function(label) {
+            label.classList.remove('role-selected');
+        });
+        this.closest('label').classList.add('role-selected');
+
+        // radio dot
+        document.querySelectorAll('.radio-dot').forEach(d => d.classList.remove('radio-active'));
+        this.closest('label').querySelector('.radio-dot').classList.add('radio-active');
+
+        // show/hide extra cards
+        const cardOwner = document.getElementById('card-owner');
+        const cardAdmin = document.getElementById('card-admin');
+        const storeInput = document.getElementById('store_name');
+        const branchInput = document.getElementById('branch_code');
+
+        if (this.value === 'owner') {
+            cardOwner.style.display = 'block';
+            cardAdmin.style.display = 'none';
+            storeInput.setAttribute('required', 'required');
+            branchInput.removeAttribute('required');
+        } else if (this.value === 'admin') {
+            cardAdmin.style.display = 'block';
+            cardOwner.style.display = 'none';
+            branchInput.setAttribute('required', 'required');
+            storeInput.removeAttribute('required');
+        }
+
+        // re-init lucide for newly visible icons
+        lucide.createIcons();
+    });
+});
+
+// restore state on old() after validation error
+(function() {
+    const oldRole = '{{ old("role") }}';
+    if (oldRole) {
+        const radio = document.querySelector('input[name="role"][value="' + oldRole + '"]');
+        if (radio) {
+            radio.dispatchEvent(new Event('change'));
+        }
+    }
+})();
+</script>
 
 </body>
 </html>
