@@ -41,6 +41,18 @@ body {
     outline: none;
 }
 
+/* ─── MENGHILANGKAN ICON MATA BAWAAN BROWSER ────────────── */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+input[type="password"]::-webkit-contacts-auto-fill-button,
+input[type="password"]::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+}
+
 /* ─── BODY & LAYOUT ─────────────────────────────────────── */
 .body {
     width: 100%;
@@ -190,7 +202,7 @@ body {
 }
 
 .body .text-wrapper-3 {
-    color: rgba(255,255,255,0.55);
+    color: #ffffff; /* Diubah menjadi putih */
 }
 
 .body .kelola-data {

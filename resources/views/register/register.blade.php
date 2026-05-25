@@ -18,7 +18,6 @@
 
     <div class="register-page">
 
-        <!-- LEFT PANEL -->
         <div class="left-panel">
 
             <div class="container"></div>
@@ -62,7 +61,6 @@
 
                     <div class="container-7">
 
-    <!-- CARD ADMIN -->
     <div class="container-8">
 
         <div class="container-9">
@@ -115,7 +113,6 @@
 
     </div>
 
-    <!-- CARD OWNER -->
     <div class="container-16">
 
         <div class="container-9">
@@ -176,7 +173,6 @@
 
         </div>
 
-        <!-- RIGHT PANEL -->
         <div class="container-19">
 
             <div class="container-20">
@@ -185,7 +181,6 @@
 
                     <div class="container-22">
 
-                        {{-- POIN 2: ganti icon-5 jadi lucide logo lebih besar --}}
                         <div class="icon-5">
                             <i data-lucide="zap" class="badge-icon"></i>
                         </div>
@@ -210,8 +205,7 @@
 
                 </div>
 
-                <!-- FORM -->
-                <form class="form" method="POST" action="{{ route('register') }}">
+                <form id="register-form" class="form" method="POST" action="{{ route('register') }}">
 
                     @csrf
 
@@ -226,7 +220,6 @@
                         </div>
                     @endif
 
-                    <!-- ROLE -->
                     <div class="container-23">
 
                         <div class="label">
@@ -237,7 +230,6 @@
 
                         <div class="container-24">
 
-                            {{-- POIN 1: ganti img container-26 jadi lucide layout-dashboard --}}
                             <label class="button" id="label-owner">
 
                                 <input type="radio" name="role" value="owner" hidden>
@@ -304,7 +296,6 @@
 
                     </div>
 
-                    <!-- SEPARATOR -->
                     <div class="container-28">
 
                         <div class="container-29"></div>
@@ -319,7 +310,6 @@
 
                     </div>
 
-                    <!-- NAMA -->
                     <div class="container-31">
 
                         <div class="label">
@@ -347,7 +337,6 @@
 
                     </div>
 
-                    <!-- EMAIL -->
                     <div class="container-34">
 
                         <div class="label">
@@ -375,7 +364,6 @@
 
                     </div>
 
-                    <!-- PASSWORD -->
                     <div class="container-34">
 
                         <div class="label">
@@ -410,7 +398,6 @@
 
                     </div>
 
-                    <!-- KONFIRMASI PASSWORD -->
                     <div class="container-34">
 
                         <div class="label">
@@ -445,9 +432,6 @@
 
                     </div>
 
-                    <!-- POIN 3 & 4: ROLE EXTRA CARD — muncul kondisional via JS -->
-
-                    <!-- CARD OWNER: Informasi Toko (hijau) -->
                     <div class="role-extra-card card-owner" id="card-owner" style="display:none;">
 
                         <div class="role-extra-header">
@@ -480,7 +464,6 @@
 
                     </div>
 
-                    <!-- CARD ADMIN: Kode Akses Cabang (ungu) -->
                     <div class="role-extra-card card-admin" id="card-admin" style="display:none;">
 
                         <div class="role-extra-header">
@@ -516,7 +499,6 @@
 
                     </div>
 
-                    <!-- BUTTON -->
                     <button type="submit" class="button-4">
 
                         <div class="text-wrapper-15">
@@ -531,7 +513,6 @@
 
                 </form>
 
-                <!-- LOGIN -->
                 <div class="sudah-punya-akun-wrapper">
 
                     <p class="sudah-punya-akun">
@@ -614,6 +595,18 @@ document.querySelectorAll('input[name="role"]').forEach(function(radio) {
         }
     }
 })();
+
+// VALIDASI ROLE SEBELUM SUBMIT
+document.getElementById('register-form').addEventListener('submit', function(e) {
+    const roleSelected = document.querySelector('input[name="role"]:checked');
+    if (!roleSelected) {
+        e.preventDefault(); // Mencegah form dikirim
+        alert('Silakan Pilih Peran Anda (Owner / Admin) terlebih dahulu sebelum mendaftar.');
+        
+        // Opsional: Berikan efek scroll/highlight ke area pilihan role
+        document.querySelector('.container-23').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+});
 </script>
 
 </body>
