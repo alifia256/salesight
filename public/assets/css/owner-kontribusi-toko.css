@@ -818,3 +818,90 @@
   line-height: 19.5px;
   white-space: nowrap;
 }
+
+/* =========================================
+RANKING LIST EDAS
+========================================= */
+
+.kontribusi-ranking-list {
+  position: absolute;
+  top: 430px;
+  left: 40px;
+  width: 545px;
+  height: 190px;
+  overflow-y: auto;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 14px;
+}
+
+.kontribusi-ranking-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 10px;
+  margin-bottom: 10px;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.kontribusi-ranking-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.kontribusi-ranking-number {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #314cff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.kontribusi-ranking-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.kontribusi-ranking-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.kontribusi-ranking-score {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.kontribusi-ranking-right {
+  text-align: right;
+}
+
+.kontribusi-ranking-percent {
+  font-size: 16px;
+  font-weight: 800;
+  color: #314cff;
+}
+
+.kontribusi-ranking-sales {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.kontribusi-ranking-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 10px 0px;
+  margin-top: 10px;
+  border-top: 1px solid #e2e8f0;
+  font-weight: 700;
+  color: #0f172a;
+}

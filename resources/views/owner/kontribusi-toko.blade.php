@@ -78,71 +78,62 @@
                     <!-- Area chart placeholder -->
                     <div class="kontribusi-chart-placeholder"></div>
 
-                    <!-- Legend -->
-                    @foreach($data as $item)
+                    <!-- Ranking Toko -->
+                    <div class="kontribusi-ranking-list">
 
-                    <div class="kontribusi-legend">
-                        <div class="table-responsive mt-4">
+                        @foreach($data as $item)
 
-    <table class="table table-bordered align-middle">
+                        <div class="kontribusi-ranking-item">
 
-        <thead>
-            <tr>
-                <th>Ranking</th>
-                <th>Nama Toko</th>
-                <th>Kontribusi</th>
-                <th>Total Sales</th>
-                <th>Score EDAS</th>
-            </tr>
-        </thead>
+                            <div class="kontribusi-ranking-left">
 
-        <tbody>
+                                <div class="kontribusi-ranking-number">
+                                    #{{ $item->ranking_position }}
+                                </div>
 
-            @foreach($data as $item)
+                                <div class="kontribusi-ranking-info">
 
-            <tr>
+                                    <div class="kontribusi-ranking-name">
+                                        {{ $item->shopping_mall }}
+                                    </div>
 
-                <td>
-                    {{ $item->ranking_position }}
-                </td>
+                                    <div class="kontribusi-ranking-score">
+                                        Score EDAS:
+                                        {{ number_format($item->appraisal_score, 4) }}
+                                    </div>
 
-                <td>
-                    {{ $item->shopping_mall }}
-                </td>
+                                </div>
 
-                <td>
-                    {{ number_format($item->persentase, 1) }}%
-                </td>
-
-                <td>
-                    Rp{{ number_format($item->total_sales, 0, ',', '.') }}
-                </td>
-
-                <td>
-                    {{ number_format($item->appraisal_score, 4) }}
-                </td>
-
-            </tr>
-
-            @endforeach
-
-        </tbody>
-
-    </table>
-
-</div>
-
-                        <div class="kontribusi-legend-total">
-                            <div class="kontribusi-legend-color-black"></div>
-                            <div class="kontribusi-total-name">Total</div>
-                            <div class="kontribusi-total-percent">100%</div>
-                            <div class="kontribusi-total-value">
-                                Rp{{ number_format($totalSales, 0, ',', '.') }}
                             </div>
+
+                            <div class="kontribusi-ranking-right">
+
+                                <div class="kontribusi-ranking-percent">
+                                    {{ number_format($item->persentase, 1) }}%
+                                </div>
+
+                                <div class="kontribusi-ranking-sales">
+                                    Rp{{ number_format($item->total_sales, 0, ',', '.') }}
+                                </div>
+
+                            </div>
+
                         </div>
 
-                    </div>
-                    @endforeach
+                        @endforeach
+
+    <!-- Total -->
+    <div class="kontribusi-ranking-total">
+
+        <div>Total Penjualan</div>
+
+        <div>
+            Rp{{ number_format($totalSales, 0, ',', '.') }}
+        </div>
+
+    </div>
+
+</div>
 
                 </div>
             </div>
@@ -242,15 +233,6 @@
                         <div class="kontribusi-summary-value">
                             {{ $jumlahCabang }} cabang
                         </div>
-                    </div>
-                </div>
-
-                <div class="kontribusi-summary-row kontribusi-summary-row-mid">
-                    <div class="kontribusi-summary-label-wrap-3">
-                        <div class="kontribusi-summary-label-single">Cabang Aktif</div>
-                    </div>
-                    <div class="kontribusi-summary-value-wrap-3">
-                        <div class="kontribusi-summary-value">4 cabang</div>
                     </div>
                 </div>
 

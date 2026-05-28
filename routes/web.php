@@ -46,9 +46,10 @@ Route::prefix('owner')->group(function () {
         return view('owner.tren-penjualan-toko');
     })->name('owner.tren-toko');
 
-    Route::get('/kontribusi-toko', function () {
-        return view('owner.kontribusi-toko');
-    })->name('owner.kontribusi-toko');
+    Route::get(
+        '/kontribusi-toko/{tahun?}',
+        [EdasController::class, 'kontribusiToko']
+    )->name('owner.kontribusi-toko');
 
 });
 
