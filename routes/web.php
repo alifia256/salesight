@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EdasController;
 
 
 // Landing Page
@@ -50,3 +51,12 @@ Route::prefix('owner')->group(function () {
     })->name('owner.kontribusi-toko');
 
 });
+
+/*
+|--------------------------------------------------------------------------
+| EDAS
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/proses-edas/{tahun}',
+    [EdasController::class, 'prosesEdas']);
