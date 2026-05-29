@@ -329,13 +329,21 @@ class EdasController extends Controller
         ]);
     }
 
-    public function kontribusiToko($tahun = 2022)
+    public function kontribusiToko(Request $request)
     {
+        $tahun = $request->tahun ?? 2022;
+        
         /*
         |--------------------------------------------------------------------------
         | Ambil data EDAS berdasarkan tahun
         |--------------------------------------------------------------------------
         */
+
+        $tahunList = HasilEdasModel::select('periode_year')
+        ->distinct()
+        ->orderBy('periode_year', 'desc')
+        ->pluck('periode_year');
+
 
         $data = HasilEdasModel::where(
             'periode_year',
@@ -351,6 +359,7 @@ class EdasController extends Controller
         */
 
         $totalSales = $data->sum('total_sales');
+
 
         /*
         |--------------------------------------------------------------------------
@@ -415,7 +424,8 @@ class EdasController extends Controller
                 'totalSales',
                 'jumlahCabang',
                 'rataRataCabang',
-                'tahun'
+                'tahun',
+                'tahunList'
             )
         );
     }

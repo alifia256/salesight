@@ -31,48 +31,21 @@
 
                     <!-- Dropdown periode -->
                     <div class="kontribusi-filter-frame">
-                        <div class="kontribusi-filter-button">
-                            <img class="kontribusi-filter-icon" src="{{ asset('img/toko.png') }}" />
-                            <div class="kontribusi-filter-text">
-                                <div class="kontribusi-filter-label">Periode Tahun</div>
-                            </div>
-                            <img class="kontribusi-filter-icon" src="{{ asset('img/dropdown.png') }}" />
-                        </div>
-
-                        <div class="kontribusi-dropdown">
-                            <div class="kontribusi-dropdown-active">
-                                <div class="kontribusi-dot-blue"></div>
-                                <div class="kontribusi-dropdown-active-text">Semua Cabang</div>
-                                <div class="kontribusi-check-wrapper">
-                                    <img class="kontribusi-check-icon" src="{{ asset('img/vector-5.svg') }}" />
-                                </div>
-                            </div>
-
-                            <div class="kontribusi-dropdown-item">
-                                <div class="kontribusi-dot-blue"></div>
-                                <div class="kontribusi-dropdown-text">Toko Jakarta Pusat</div>
-                            </div>
-
-                            <div class="kontribusi-dropdown-item">
-                                <div class="kontribusi-dot-green"></div>
-                                <div class="kontribusi-dropdown-text">Toko Bandung Kota</div>
-                            </div>
-
-                            <div class="kontribusi-dropdown-item">
-                                <div class="kontribusi-dot-yellow"></div>
-                                <div class="kontribusi-dropdown-text">Toko Surabaya</div>
-                            </div>
-
-                            <div class="kontribusi-dropdown-item">
-                                <div class="kontribusi-dot-red"></div>
-                                <div class="kontribusi-dropdown-text">Toko Yogyakarta</div>
-                            </div>
-
-                            <div class="kontribusi-dropdown-item">
-                                <div class="kontribusi-dot-purple"></div>
-                                <div class="kontribusi-dropdown-text">Toko Medan</div>
-                            </div>
-                        </div>
+                        <form method="GET"
+                            action="{{ route('owner.kontribusi-toko') }}">
+                            <select
+                                name="tahun"
+                                onchange="this.form.submit()"
+                                class="form-select">
+                                @foreach($tahunList as $itemTahun)
+                                    <option
+                                        value="{{ $itemTahun }}"
+                                        {{ $tahun == $itemTahun ? 'selected' : '' }}>
+                                        {{ $itemTahun }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </form>
                     </div>
 
                     <!-- Area chart placeholder -->
