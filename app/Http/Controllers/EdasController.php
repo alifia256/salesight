@@ -27,16 +27,16 @@ class EdasController extends Controller
         |--------------------------------------------------------------------------
         */
         $data = SalesModel::select(
-                'shopping_mall',
+            'shopping_mall',
 
-                DB::raw('SUM(total_sales) as total_sales'),
+            DB::raw('SUM(total_sales) as total_sales'),
 
-                DB::raw('COUNT(invoice_no) as total_transaction'),
+            DB::raw('COUNT(invoice_no) as total_transaction'),
 
-                DB::raw('SUM(quantity) as total_quantity'),
+            DB::raw('SUM(quantity) as total_quantity'),
 
-                DB::raw('AVG(total_sales) as average_sales')
-            )
+            DB::raw('AVG(total_sales) as average_sales')
+        )
             ->whereYear('invoice_date', $tahun)
             ->groupBy('shopping_mall')
             ->get();
@@ -323,16 +323,16 @@ class EdasController extends Controller
         |--------------------------------------------------------------------------
         */
 
-        return response()->json([
-            'message' => 'Perhitungan EDAS berhasil',
-            'data' => $results
-        ]);
+        return redirect()->route(
+            'owner.kontribusi-toko',
+            ['tahun' => $tahun]
+        );
     }
 
     public function kontribusiToko(Request $request)
     {
         $tahun = $request->tahun ?? 2022;
-        
+
         /*
         |--------------------------------------------------------------------------
         | Ambil data EDAS berdasarkan tahun
@@ -340,17 +340,17 @@ class EdasController extends Controller
         */
 
         $tahunList = HasilEdasModel::select('periode_year')
-        ->distinct()
-        ->orderBy('periode_year', 'desc')
-        ->pluck('periode_year');
+            ->distinct()
+            ->orderBy('periode_year', 'desc')
+            ->pluck('periode_year');
 
 
         $data = HasilEdasModel::where(
             'periode_year',
             $tahun
         )
-        ->orderBy('ranking_position', 'asc')
-        ->get();
+            ->orderBy('ranking_position', 'asc')
+            ->get();
 
         /*
         |--------------------------------------------------------------------------
