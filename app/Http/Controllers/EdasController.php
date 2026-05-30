@@ -323,10 +323,10 @@ class EdasController extends Controller
         |--------------------------------------------------------------------------
         */
 
-        return redirect()->route(
-            'owner.kontribusi-toko',
-            ['tahun' => $tahun]
-        );
+        return response()->json([
+            'message' => 'Perhitungan EDAS berhasil',
+            'data' => $results
+        ]);
     }
 
     public function kontribusiToko(Request $request)
