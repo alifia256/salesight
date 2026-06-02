@@ -49,9 +49,10 @@
             @if (request()->routeIs('owner.kelola-cabang')) <div class="active-indicator"></div> @endif
         </a>
 
-        <a href="#" class="nav-item">
+        <a href="{{ route('owner.daftar-toko') }}" class="nav-item {{ request()->routeIs('owner.daftar-toko') ? 'active' : '' }}">
             <img class="nav-icon" src="{{ asset('img/daftartoko.png') }}" alt="Daftar Toko" />
             <span class="nav-text">Daftar Toko</span>
+            @if (request()->routeIs('owner.daftar-toko')) <div class="active-indicator"></div> @endif
         </a>
     </nav>
 
