@@ -17,7 +17,7 @@ class AdminTransactionController extends Controller
         $search = $request->input('search');
         $filterCategory = $request->input('category');
 
-        $query = sale::where('branch_id', $branchId);
+        $query = SalesModel::where('branch_id', $branchId);
 
         // Logika Pencarian
         if ($search) {
