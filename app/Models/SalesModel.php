@@ -11,6 +11,7 @@ class SalesModel extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'branch_id',
         'invoice_no',
         'customer_id',
         'gender',
