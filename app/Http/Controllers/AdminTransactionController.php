@@ -13,18 +13,24 @@ class AdminTransactionController extends Controller
     public function index(Request $request)
     {
         // Fresh query untuk pastikan branch_id terbaru
-        $user     = User::find(Auth::id());
+        $user = User::find(Auth::id());
         $branchId = $user->branch_id;
 
-        $search         = $request->input('search');
+        dd([
+            'auth_id' => Auth::id(),
+            'branch_id' => $branchId,
+            'user' => $user->toArray(),
+        ]);
+
+        $search = $request->input('search');
         $filterCategory = $request->input('category');
 
         $query = SalesModel::where('branch_id', $branchId);
 
         if ($search) {
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('category', 'like', "%{$search}%")
-                  ->orWhere('invoice_no', 'like', "%{$search}%");
+                    ->orWhere('invoice_no', 'like', "%{$search}%");
             });
         }
 
@@ -33,8 +39,8 @@ class AdminTransactionController extends Controller
         }
 
         $transactions = $query->orderBy('invoice_date', 'desc')
-                              ->orderBy('created_at', 'desc')
-                              ->paginate(10);
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
         return view('admin.data-transaksi', compact('transactions', 'search', 'filterCategory'));
     }
@@ -48,37 +54,37 @@ class AdminTransactionController extends Controller
     {
         $request->validate([
             'invoice_date' => 'required|date',
-            'category'     => 'required|string',
-            'quantity'     => 'required|integer|min:1',
-            'price'        => 'required|numeric|min:0',
+            'category' => 'required|string',
+            'quantity' => 'required|integer|min:1',
+            'price' => 'required|numeric|min:0',
         ]);
 
         // Fresh query dari DB, tidak dari session cache
-        $user     = User::find(Auth::id());
+        $user = User::find(Auth::id());
         $branchId = $user->branch_id;
 
-        $invoiceNo    = 'I' . rand(100000, 999999);
-        $customerId   = 'C' . rand(100000, 999999);
-        $totalSales   = $request->quantity * $request->price;
+        $invoiceNo = 'I' . rand(100000, 999999);
+        $customerId = 'C' . rand(100000, 999999);
+        $totalSales = $request->quantity * $request->price;
         $randomGender = ['Male', 'Female'][array_rand(['Male', 'Female'])];
-        $randomAge    = rand(18, 65);
+        $randomAge = rand(18, 65);
 
-        $branch   = Branch::where('branch_id', $branchId)->first();
+        $branch = Branch::where('branch_id', $branchId)->first();
         $namaToko = $branch ? $branch->name : '-';
 
         SalesModel::create([
-            'branch_id'      => $branchId,
-            'invoice_no'     => $invoiceNo,
-            'customer_id'    => $customerId,
-            'gender'         => $randomGender,
-            'age'            => $randomAge,
-            'category'       => $request->category,
-            'quantity'       => $request->quantity,
-            'price'          => $request->price,
+            'branch_id' => $branchId,
+            'invoice_no' => $invoiceNo,
+            'customer_id' => $customerId,
+            'gender' => $randomGender,
+            'age' => $randomAge,
+            'category' => $request->category,
+            'quantity' => $request->quantity,
+            'price' => $request->price,
             'payment_method' => 'Cash',
-            'invoice_date'   => $request->invoice_date,
-            'shopping_mall'  => $namaToko,
-            'total_sales'    => $totalSales,
+            'invoice_date' => $request->invoice_date,
+            'shopping_mall' => $namaToko,
+            'total_sales' => $totalSales,
         ]);
 
         return redirect()->route('admin.transaksi')->with('success', 'Data transaksi berhasil ditambahkan!');
@@ -86,8 +92,8 @@ class AdminTransactionController extends Controller
 
     public function edit($id)
     {
-        $user        = User::find(Auth::id());
-        $branchId    = $user->branch_id;
+        $user = User::find(Auth::id());
+        $branchId = $user->branch_id;
         $transaction = SalesModel::where('branch_id', $branchId)->findOrFail($id);
 
         return view('admin.edit-transaksi', compact('transaction'));
@@ -97,22 +103,22 @@ class AdminTransactionController extends Controller
     {
         $request->validate([
             'invoice_date' => 'required|date',
-            'category'     => 'required|string',
-            'quantity'     => 'required|integer|min:1',
-            'price'        => 'required|numeric|min:0',
+            'category' => 'required|string',
+            'quantity' => 'required|integer|min:1',
+            'price' => 'required|numeric|min:0',
         ]);
 
-        $user        = User::find(Auth::id());
-        $branchId    = $user->branch_id;
+        $user = User::find(Auth::id());
+        $branchId = $user->branch_id;
         $transaction = SalesModel::where('branch_id', $branchId)->findOrFail($id);
-        $totalSales  = $request->quantity * $request->price;
+        $totalSales = $request->quantity * $request->price;
 
         $transaction->update([
             'invoice_date' => $request->invoice_date,
-            'category'     => $request->category,
-            'quantity'     => $request->quantity,
-            'price'        => $request->price,
-            'total_sales'  => $totalSales,
+            'category' => $request->category,
+            'quantity' => $request->quantity,
+            'price' => $request->price,
+            'total_sales' => $totalSales,
         ]);
 
         return redirect()->route('admin.transaksi')->with('success', 'Data transaksi berhasil diperbarui!');
@@ -120,8 +126,8 @@ class AdminTransactionController extends Controller
 
     public function destroy($id)
     {
-        $user        = User::find(Auth::id());
-        $branchId    = $user->branch_id;
+        $user = User::find(Auth::id());
+        $branchId = $user->branch_id;
         $transaction = SalesModel::where('branch_id', $branchId)->findOrFail($id);
         $transaction->delete();
 
@@ -134,7 +140,7 @@ class AdminTransactionController extends Controller
             'csv_file' => 'required|mimes:csv,txt|max:10240',
         ]);
 
-        $file   = $request->file('csv_file');
+        $file = $request->file('csv_file');
         $handle = fopen($file->getPathname(), 'r');
         $header = fgetcsv($handle, 1000, ',');
 
@@ -143,22 +149,23 @@ class AdminTransactionController extends Controller
         }
 
         // Fresh query dari DB
-        $user     = User::find(Auth::id());
+        $user = User::find(Auth::id());
         $branchId = $user->branch_id;
 
         // Ambil nama toko sekali di luar loop
-        $branch   = Branch::where('branch_id', $branchId)->first();
+        $branch = Branch::where('branch_id', $branchId)->first();
         $namaToko = $branch ? $branch->name : '-';
 
         $records = [];
 
         while (($data = fgetcsv($handle, 1000, ',')) !== false) {
-            if (count($header) !== count($data)) continue;
+            if (count($header) !== count($data))
+                continue;
 
-            $row        = array_combine($header, $data);
-            $qty        = isset($row['quantity']) ? (int)$row['quantity'] : 1;
-            $price      = isset($row['price']) ? (float)$row['price'] : 0;
-            $totalSales = isset($row['total_sales']) ? (float)$row['total_sales'] : ($qty * $price);
+            $row = array_combine($header, $data);
+            $qty = isset($row['quantity']) ? (int) $row['quantity'] : 1;
+            $price = isset($row['price']) ? (float) $row['price'] : 0;
+            $totalSales = isset($row['total_sales']) ? (float) $row['total_sales'] : ($qty * $price);
 
             $invoiceDate = date('Y-m-d');
             if (!empty($row['invoice_date'])) {
@@ -166,20 +173,20 @@ class AdminTransactionController extends Controller
             }
 
             $records[] = [
-                'branch_id'      => $branchId,
-                'invoice_no'     => $row['invoice_no'] ?? ('I' . rand(100000, 999999)),
-                'customer_id'    => $row['customer_id'] ?? ('C' . rand(100000, 999999)),
-                'gender'         => $row['gender'] ?? 'Female',
-                'age'            => isset($row['age']) ? (int)$row['age'] : 25,
-                'category'       => $row['category'] ?? 'Lainnya',
-                'quantity'       => $qty,
-                'price'          => $price,
+                'branch_id' => $branchId,
+                'invoice_no' => $row['invoice_no'] ?? ('I' . rand(100000, 999999)),
+                'customer_id' => $row['customer_id'] ?? ('C' . rand(100000, 999999)),
+                'gender' => $row['gender'] ?? 'Female',
+                'age' => isset($row['age']) ? (int) $row['age'] : 25,
+                'category' => $row['category'] ?? 'Lainnya',
+                'quantity' => $qty,
+                'price' => $price,
                 'payment_method' => $row['payment_method'] ?? 'Cash',
-                'invoice_date'   => $invoiceDate,
-                'shopping_mall'  => !empty($row['shopping_mall']) ? $row['shopping_mall'] : $namaToko,
-                'total_sales'    => $totalSales,
-                'created_at'     => now(),
-                'updated_at'     => now(),
+                'invoice_date' => $invoiceDate,
+                'shopping_mall' => !empty($row['shopping_mall']) ? $row['shopping_mall'] : $namaToko,
+                'total_sales' => $totalSales,
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
         }
 
