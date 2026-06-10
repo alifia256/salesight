@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Branch;
-use App\Models\Sale;
+use App\Models\SalesModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $ownerBranchIds = Branch::where('user_id', Auth::id())->pluck('branch_id');
 
         // 2. query dasarnya
-        $query = Sale::whereIn('branch_id', $ownerBranchIds);
+        $query = SalesModel::whereIn('branch_id', $ownerBranchIds);
 
         $currentYear = Carbon::now()->year;
         $currentMonth = Carbon::now()->month;
