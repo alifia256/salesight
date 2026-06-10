@@ -11,6 +11,8 @@ return new class extends Migration
         Schema::table('sales', function (Blueprint $table) {
             $table->decimal('price', 15, 2)->change();
             $table->decimal('total_sales', 15, 2)->change();
+            $table->integer('quantity')->change();
+            $table->integer('age')->change();
         });
     }
 
