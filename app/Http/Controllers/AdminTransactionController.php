@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SalesModel;
 use App\Models\Branch;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class AdminTransactionController extends Controller
 {
     public function index(Request $request)
     {
-        $branchId       = Auth::user()->branch_id;
+        // Fresh query untuk pastikan branch_id terbaru
+        $user     = User::find(Auth::id());
+        $branchId = $user->branch_id;
+
         $search         = $request->input('search');
         $filterCategory = $request->input('category');
 
@@ -49,20 +53,21 @@ class AdminTransactionController extends Controller
             'price'        => 'required|numeric|min:0',
         ]);
 
+        // Fresh query dari DB, tidak dari session cache
+        $user     = User::find(Auth::id());
+        $branchId = $user->branch_id;
+
         $invoiceNo    = 'I' . rand(100000, 999999);
         $customerId   = 'C' . rand(100000, 999999);
         $totalSales   = $request->quantity * $request->price;
         $randomGender = ['Male', 'Female'][array_rand(['Male', 'Female'])];
         $randomAge    = rand(18, 65);
 
-        $user = Auth::user();
-
-        // Ambil nama toko dari tabel branches
-        $branch   = Branch::where('branch_id', $user->branch_id)->first();
+        $branch   = Branch::where('branch_id', $branchId)->first();
         $namaToko = $branch ? $branch->name : '-';
 
         SalesModel::create([
-            'branch_id'      => $user->branch_id,
+            'branch_id'      => $branchId,
             'invoice_no'     => $invoiceNo,
             'customer_id'    => $customerId,
             'gender'         => $randomGender,
@@ -81,7 +86,8 @@ class AdminTransactionController extends Controller
 
     public function edit($id)
     {
-        $branchId    = Auth::user()->branch_id;
+        $user        = User::find(Auth::id());
+        $branchId    = $user->branch_id;
         $transaction = SalesModel::where('branch_id', $branchId)->findOrFail($id);
 
         return view('admin.edit-transaksi', compact('transaction'));
@@ -96,7 +102,8 @@ class AdminTransactionController extends Controller
             'price'        => 'required|numeric|min:0',
         ]);
 
-        $branchId    = Auth::user()->branch_id;
+        $user        = User::find(Auth::id());
+        $branchId    = $user->branch_id;
         $transaction = SalesModel::where('branch_id', $branchId)->findOrFail($id);
         $totalSales  = $request->quantity * $request->price;
 
@@ -113,7 +120,8 @@ class AdminTransactionController extends Controller
 
     public function destroy($id)
     {
-        $branchId    = Auth::user()->branch_id;
+        $user        = User::find(Auth::id());
+        $branchId    = $user->branch_id;
         $transaction = SalesModel::where('branch_id', $branchId)->findOrFail($id);
         $transaction->delete();
 
@@ -134,7 +142,8 @@ class AdminTransactionController extends Controller
             return redirect()->back()->withErrors('File CSV kosong atau format tidak sesuai.');
         }
 
-        $user     = Auth::user();
+        // Fresh query dari DB
+        $user     = User::find(Auth::id());
         $branchId = $user->branch_id;
 
         // Ambil nama toko sekali di luar loop
