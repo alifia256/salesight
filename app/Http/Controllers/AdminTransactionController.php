@@ -16,12 +16,6 @@ class AdminTransactionController extends Controller
         $user = User::find(Auth::id());
         $branchId = $user->branch_id;
 
-        dd([
-            'auth_id' => Auth::id(),
-            'branch_id' => $branchId,
-            'user' => $user->toArray(),
-        ]);
-
         $search = $request->input('search');
         $filterCategory = $request->input('category');
 
