@@ -57,13 +57,37 @@ class BranchController extends Controller
     }
 
     public function destroy($id)
-    {
-        $branch     = Branch::where('branch_id', $id)->where('user_id', Auth::id())->firstOrFail();
-        $branchName = $branch->name;
-        $branch->delete();
+{
+    $branch = Branch::where('branch_id', $id)
+        ->where('user_id', Auth::id())
+        ->firstOrFail();
 
-        return redirect()->back()->with('success', 'Cabang ' . $branchName . ' berhasil dihapus secara permanen.');
-    }
+    $branchName = $branch->name;
+    $branchId   = $branch->branch_id;
+
+    // 1. Hapus semua data sales cabang ini
+    \App\Models\SalesModel::where('branch_id', $branchId)->delete();
+
+    // 2. Hapus hasil EDAS cabang ini
+    \App\Models\HasilEdasModel::where('user_id', Auth::id())
+        ->where('shopping_mall', $branchName)
+        ->delete();
+
+    // 3. Hapus status toko cabang ini
+    \App\Models\StatusTokoModel::where('user_id', Auth::id())
+        ->where('shopping_mall', $branchName)
+        ->delete();
+
+    // 4. Hapus akun admin yang terhubung ke cabang ini
+    \App\Models\User::where('branch_id', $branchId)
+        ->where('level_id', 2) // hanya admin, bukan owner
+        ->delete();
+
+    // 5. Hapus cabang
+    $branch->delete();
+
+    return redirect()->back()->with('success', 'Cabang ' . $branchName . ' dan semua data terkait berhasil dihapus.');
+}
 
     public function daftarToko()
     {
