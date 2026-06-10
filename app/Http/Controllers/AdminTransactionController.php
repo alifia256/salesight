@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sale;
+use App\Models\SalesModel;
 use Illuminate\Support\Facades\Auth;
 
 class AdminTransactionController extends Controller
@@ -16,7 +17,7 @@ class AdminTransactionController extends Controller
         $search = $request->input('search');
         $filterCategory = $request->input('category');
 
-        $query = Sale::where('branch_id', $branchId);
+        $query = sale::where('branch_id', $branchId);
 
         // Logika Pencarian
         if ($search) {
