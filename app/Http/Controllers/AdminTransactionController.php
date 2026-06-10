@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Sale;
+use App\Models\SalesModel;
 use Illuminate\Support\Facades\Auth;
 
 class AdminTransactionController extends Controller
@@ -16,7 +16,7 @@ class AdminTransactionController extends Controller
         $search = $request->input('search');
         $filterCategory = $request->input('category');
 
-        $query = Sale::where('branch_id', $branchId);
+        $query = SalesModel::where('branch_id', $branchId);
 
         // Logika Pencarian
         if ($search) {
@@ -70,7 +70,7 @@ class AdminTransactionController extends Controller
         $user = Auth::user();
 
         // 3. Simpan ke database
-        Sale::create([
+        SalesModel::create([
             'branch_id'      => $user->branch_id,
             'invoice_no'     => $invoiceNo,
             'customer_id'    => $customerId,
@@ -95,7 +95,7 @@ class AdminTransactionController extends Controller
     {
         $branchId = Auth::user()->branch_id;
         // Pastikan hanya bisa mengedit transaksi milik cabangnya sendiri
-        $transaction = Sale::where('branch_id', $branchId)->findOrFail($id);
+        $transaction = SalesModel::where('branch_id', $branchId)->findOrFail($id);
         
         return view('admin.edit-transaksi', compact('transaction'));
     }
@@ -111,7 +111,7 @@ class AdminTransactionController extends Controller
         ]);
 
         $branchId = Auth::user()->branch_id;
-        $transaction = Sale::where('branch_id', $branchId)->findOrFail($id);
+        $transaction = SalesModel::where('branch_id', $branchId)->findOrFail($id);
 
         $totalSales = $request->quantity * $request->price;
 
@@ -130,7 +130,7 @@ class AdminTransactionController extends Controller
     public function destroy($id)
     {
         $branchId = Auth::user()->branch_id;
-        $transaction = Sale::where('branch_id', $branchId)->findOrFail($id);
+        $transaction = SalesModel::where('branch_id', $branchId)->findOrFail($id);
         
         $transaction->delete();
 
@@ -206,7 +206,7 @@ class AdminTransactionController extends Controller
 
         // 5. Masukkan ke database (Menggunakan array_chunk agar tidak berat jika datanya puluhan ribu)
         foreach (array_chunk($records, 500) as $chunk) {
-            Sale::insert($chunk);
+            SalesModel::insert($chunk);
         }
 
         return redirect()->back()->with('success', count($records) . ' Data transaksi berhasil di-import dari CSV!');
