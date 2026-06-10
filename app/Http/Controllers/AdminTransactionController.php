@@ -71,7 +71,7 @@ class AdminTransactionController extends Controller
         $user = Auth::user();
 
         // 3. Simpan ke database
-        Sale::create([
+        salesModel::create([
             'branch_id'      => $user->branch_id,
             'invoice_no'     => $invoiceNo,
             'customer_id'    => $customerId,
