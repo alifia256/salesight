@@ -17,7 +17,7 @@ class AdminDashboardController extends Controller
         $branchId = $user->branch_id;
 
         // Base query: HANYA ambil data transaksi di cabang milik admin tersebut
-        $query = SalesModel::where('branch_id', $branchId); // Sesuaikan dengan nama Model-mu
+        $query = SalesModel::where('branch_id', $branchId); 
 
         // 1. Hitung Statistik (Sesuai kolom database aslimu)
         $totalTransaksi = (clone $query)->count();

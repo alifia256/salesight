@@ -919,41 +919,117 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     object-fit: contain;
 }
 
+/* ─── FIX ROLE CARDS — ubah dari absolute ke flex ──────── */
+.body .container-24 {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    gap: 16px;
+}
+
+.body .button,
+.body .button-2 {
+    position: relative;
+    top: auto;
+    left: auto;
+    flex: 1;
+    height: 200px;
+    min-width: 0;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s, transform 0.15s;
+    background-color: #f8fafc;
+    border-radius: 16px;
+    border: 1.5px solid #e2e8f0;
+}
+
 /* ─── RESPONSIVE ────────────────────────────────────────── */
 @media (max-width: 960px) {
     .body .left-panel {
         display: none;
     }
+
     .body .container-19 {
         width: 100%;
         padding: 24px 20px;
         background: #f1f5f9;
     }
+
     .body .container-20 {
         padding: 36px 28px;
         border-radius: 20px;
+        margin-top: 0;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .body .container-20 {
-        padding: 28px 20px;
+        padding: 28px 16px;
+        border-radius: 16px;
     }
+
     .body .text-wrapper-8 {
         font-size: 22px;
+        white-space: normal;
     }
+
+    /* Role cards stack vertikal di mobile */
     .body .container-24 {
         height: auto;
-        display: flex;
+        flex-direction: column;
         gap: 12px;
-        position: static;
     }
+
     .body .button,
     .body .button-2 {
-        position: static;
-        flex: 1;
-        height: 190px;
-        min-width: 0;
+        flex: none;
+        width: 100%;
+        height: 160px;
+    }
+
+    /* Sesuaikan posisi elemen di dalam role card */
+    .body .text-6,
+    .body .text-8 {
+        top: 70px;
+    }
+
+    .body .text-7 {
+        top: 96px;
+    }
+
+    .body .text-9 {
+        top: 88px;
+    }
+
+    .body .paragraph-2 {
+        top: 122px;
+    }
+
+    .body .input-dan-kelola-wrapper {
+        top: 116px;
+    }
+
+    .body .container-25 {
+        top: 10px;
+        left: calc(100% - 30px);
+    }
+}
+
+@media (max-width: 400px) {
+    .body .container-19 {
+        padding: 16px 12px;
+    }
+
+    .body .container-20 {
+        padding: 24px 14px;
+    }
+
+    .body .text-wrapper-8 {
+        font-size: 20px;
+    }
+
+    .body .button-4 {
+        height: 48px;
     }
 }
 
