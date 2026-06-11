@@ -542,8 +542,70 @@
     box-shadow: 0 12px 24px rgba(220, 38, 38, 0.35);
 }
 
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-    .kc-stats { grid-template-columns: 1fr; }
-    .kc-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+/* --- RESPONSIVE ------------------------------------------ */
+
+/* Laptop Layar Sedang / Tablet Besar */
+@media (max-width: 1200px) {
+    .kc-wrapper {
+        padding: 32px 24px;
+    }
+}
+
+/* Tablet / Laptop Layar Kecil */
+@media (max-width: 992px) {
+    .kc-header { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 16px; 
+    }
+    .kc-stats { 
+        grid-template-columns: repeat(2, 1fr); /* Card angka jadi 2 kolom di tablet */
+    }
+}
+
+/* HP Layar Besar / Tablet Potrait */
+@media (max-width: 768px) {
+    .kc-btn-primary {
+        width: 100%; /* Tombol aksi (Tambah Cabang) melebar penuh biar gampang di-tap */
+        justify-content: center;
+    }
+    .kc-stats { 
+        grid-template-columns: 1fr; /* Card angka susun bawah (1 kolom) */
+    }
+    .kc-table-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+/* HP Layar Kecil */
+@media (max-width: 576px) {
+    .kc-wrapper { 
+        padding: 20px 16px; 
+    }
+    .kc-title-group h1 {
+        font-size: 24px; /* Mengecilkan teks judul halaman */
+    }
+    .kc-table-header {
+        padding: 16px;
+    }
+    .kc-table th, 
+    .kc-table td {
+        padding: 14px 16px; /* Merapatkan sel tabel agar lebih hemat ruang saat di-scroll nyamping */
+    }
+    .kc-modal-box {
+        padding: 24px 20px; /* Memperkecil ruang kosong di dalam modal popup */
+        border-radius: 20px;
+    }
+    .kc-modal-actions {
+        flex-direction: column-reverse; /* Menyusun tombol modal ke bawah (Tombol Batal di paling bawah) */
+        gap: 12px;
+    }
+    .kc-btn-cancel, 
+    .kc-btn-submit, 
+    .kc-btn-delete-confirm {
+        width: 100%; /* Memanjangkan tombol di dalam modal */
+        margin: 0;
+    }
 }

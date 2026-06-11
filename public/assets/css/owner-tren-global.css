@@ -184,8 +184,8 @@
     font-weight: 700;
     color: #dc2626;
     line-height: 1.5;
-    display: flex;              /* TAMBAH INI */
-    align-items: center;        /* TAMBAH INI */
+    display: flex;              
+    align-items: center;        
     gap: 6px;
 }
 
@@ -293,13 +293,64 @@
 .growth-badge.neutral .val  { color: #94a3b8; }
 
 /* --- RESPONSIVE --- */
-@media (max-width: 992px) {
-    .tren-global-bottom-cards  { grid-template-columns: 1fr; }
-    .tren-global-average-grid  { grid-template-columns: repeat(6, 1fr); }
+
+/* Laptop Layar Sedang / Tablet Besar */
+@media (max-width: 1200px) {
+    .tren-global-content {
+        padding: 32px 24px;
+    }
 }
 
+/* Tablet / Laptop Layar Kecil */
+@media (max-width: 992px) {
+    .tren-global-bottom-cards { 
+        grid-template-columns: 1fr; /* Info cards turun jadi 1 kolom ke bawah */
+    }
+    .tren-global-average-grid { 
+        grid-template-columns: repeat(6, 1fr); /* Growth bulanan memanjang jadi 6 kolom */
+    }
+}
+
+/* HP Layar Besar / Tablet Potrait */
+@media (max-width: 768px) {
+    .tren-global-content { 
+        padding: 24px 20px; 
+    }
+    .tren-global-chart-header {
+        flex-direction: column; /* Judul dan tombol filter Tahun turun ke bawah */
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .tren-global-year-select {
+        width: 100%; /* Tombol pilih tahun jadi penuh selebar layar */
+    }
+    .tren-global-average-grid { 
+        grid-template-columns: repeat(4, 1fr); /* Growth bulanan dirapatkan jadi 4 kolom */
+    }
+}
+
+/* HP Layar Kecil */
 @media (max-width: 576px) {
-    .tren-global-content       { padding: 20px 16px; }
-    .tren-global-average-grid  { grid-template-columns: repeat(3, 1fr); }
-    .perbandingan-toggle       { border-radius: 10px; }
+    .tren-global-content { 
+        padding: 20px 16px; 
+    }
+    .tren-global-title {
+        font-size: 24px;
+    }
+    .tren-global-chart-card {
+        padding: 20px 16px; /* Mengurangi ruang putih di pinggir card grafik */
+    }
+    .tren-global-chart-wrapper {
+        height: 280px; /* Merendahkan tinggi chart agar tidak terlalu panjang di HP */
+    }
+    .tren-global-average-grid { 
+        grid-template-columns: repeat(3, 1fr); /* Growth bulanan dipadatkan jadi 3 kolom agar tetap terbaca */
+    }
+    .perbandingan-toggle { 
+        border-radius: 10px; 
+        flex-wrap: wrap; /* Kalau teks toggle kepanjangan, bisa turun otomatis */
+    }
+    .tren-global-comparison-value {
+        font-size: 20px; /* Ukuran angka penjualan sedikit dikecilkan */
+    }
 }

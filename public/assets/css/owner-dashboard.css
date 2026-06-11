@@ -239,13 +239,63 @@
     border: 1px solid #e2e8f0;
 }
 
-/* RESPONSIVE */
+/* --- RESPONSIVE ------------------------------------------ */
+
+/* Laptop Layar Sedang / Tablet Besar */
 @media (max-width: 1200px) {
-    .dashboard-cards { grid-template-columns: repeat(2, 1fr); }
+    .dashboard-cards { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
 }
 
+/* Tablet / Laptop Layar Kecil */
+@media (max-width: 992px) {
+    .dashboard-content { 
+        padding: 28px 24px; /* Mengurangi jarak pinggir */
+    }
+    .dashboard-stats { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+/* HP Layar Besar / Tablet Potrait */
 @media (max-width: 768px) {
-    .dashboard-cards { grid-template-columns: 1fr; }
-    .dashboard-stats { grid-template-columns: 1fr; }
-    .dashboard-chart-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .dashboard-content { 
+        padding: 24px 20px; 
+    }
+    .dashboard-cards { 
+        grid-template-columns: 1fr; /* Jadi 1 kolom (menurun) */
+    }
+    .dashboard-stats { 
+        grid-template-columns: 1fr; /* Jadi 1 kolom (menurun) */
+    }
+    .dashboard-chart-header { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 16px; 
+    }
+    .dashboard-filter { 
+        width: 100%; 
+        overflow-x: auto; /* Agar tombol filter bisa di-swipe kalau kepanjangan */
+        white-space: nowrap;
+    }
+}
+
+/* HP Layar Kecil */
+@media (max-width: 480px) {
+    .dashboard-content { 
+        padding: 20px 16px; 
+    }
+    .dashboard-title { 
+        font-size: 24px; /* Mengecilkan judul sedikit agar tidak makan tempat */
+    }
+    .dashboard-chart-card { 
+        padding: 20px 16px; /* Mengurangi area putih di dalam card chart */
+    }
+    .dashboard-chart-placeholder { 
+        height: 240px; /* Merendahkan tinggi area chart untuk layar HP */
+    }
+    .dashboard-value {
+        font-size: 24px;
+    }
 }

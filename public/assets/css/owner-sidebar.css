@@ -216,3 +216,45 @@
     /* Mengubah icon abu-abu menjadi merah */
     filter: brightness(0) saturate(100%) invert(35%) sepia(91%) saturate(2251%) hue-rotate(338deg) brightness(97%) contrast(92%);
 }
+
+/* --- RESPONSIVE ------------------------------------------ */
+
+/* Tablet / Laptop Layar Kecil */
+@media (max-width: 992px) {
+    .sidebar-container {
+        width: 240px;
+        min-width: 240px;
+    }
+    .brand-name {
+        font-size: 17px; /* Mengecilkan teks brand sedikit */
+    }
+}
+
+/* HP Layar Besar / Tablet Potrait (Mode Laci / Off-Canvas) */
+@media (max-width: 768px) {
+    .sidebar-container {
+        position: fixed; /* Membuatnya mengambang di atas konten web */
+        top: 0;
+        left: -100%; 
+        height: 100vh;
+        width: 260px;
+        transition: left 0.3s ease-in-out; 
+        box-shadow: 4px 0 24px rgba(0,0,0,0.1); 
+        z-index: 999; 
+    }
+
+    .sidebar-container.open {
+        left: 0;
+    }
+
+    .sidebar-nav {
+        padding: 16px 12px;
+    }
+}
+
+/* HP Layar Kecil */
+@media (max-width: 480px) {
+    .sidebar-container {
+        width: 270px; /* Sedikit dilebarkan di HP agar jarak tombol jari lebih lega */
+    }
+}

@@ -212,12 +212,74 @@
 .kontribusi-summary-value { font-size: 13px; font-weight: 700; color: #0f172a; }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-    .kontribusi-grid { grid-template-columns: 1fr; }
+
+/* Laptop Layar Sedang / Tablet Besar */
+@media (max-width: 1200px) {
+    .kontribusi-content {
+        padding: 32px 24px;
+    }
 }
 
+/* Tablet / Laptop Layar Kecil */
+@media (max-width: 992px) {
+    .kontribusi-grid { 
+        grid-template-columns: 1fr; /* Memindahkan sidebar ke bawah area grafik */
+        gap: 20px;
+    }
+    .kontribusi-sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Sidebar card berjajar 2 kolom di tablet */
+        gap: 16px;
+    }
+}
+
+/* HP Layar Besar / Tablet Potrait */
+@media (max-width: 768px) {
+    .kontribusi-content { 
+        padding: 24px 20px; 
+    }
+    .kontribusi-card-top { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 16px;
+    }
+    .kontribusi-select {
+        width: 100%; /* Dropdown pemilih bulan/tahun memanjang penuh */
+    }
+    .kontribusi-sidebar {
+        grid-template-columns: 1fr; /* Sidebar kembali jadi 1 kolom susun ke bawah */
+    }
+}
+
+/* HP Layar Kecil */
 @media (max-width: 576px) {
-    .kontribusi-content   { padding: 20px 16px; }
-    .kontribusi-card-top  { flex-direction: column; }
-    .kontribusi-legend-val{ display: none; }
+    .kontribusi-content { 
+        padding: 20px 16px; 
+    }
+    .kontribusi-title {
+        font-size: 24px; /* Mengecilkan ukuran judul halaman */
+    }
+    .kontribusi-card-main,
+    .kontribusi-side-card {
+        padding: 20px 16px; /* Mengurangi area putih di dalam pinggiran card */
+    }
+    .kontribusi-chart-wrap {
+        width: 220px; /* Mengecilkan ukuran Donut Chart agar pas di layar HP */
+        height: 220px;
+    }
+    .kontribusi-chart-center-num {
+        font-size: 28px; /* Menyesuaikan ukuran angka di tengah grafik */
+    }
+    .kontribusi-legend-row {
+        flex-wrap: wrap; /* Mencegah baris legend (keterangan warna) bertumpukan */
+        gap: 8px;
+    }
+    .kontribusi-legend-right {
+        width: 100%;
+        justify-content: space-between;
+        padding-left: 22px; /* Dibuat menjorok sejajar dengan nama toko */
+    }
+    .kontribusi-legend-val { 
+        display: none; /* Nominal nominal/angka kepanjangan disembunyikan di HP sangat kecil */
+    }
 }

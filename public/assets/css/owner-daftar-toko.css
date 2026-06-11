@@ -268,12 +268,61 @@
 
 .dt-avg i { width: 12px; height: 12px; }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVE ------------------------------------------ */
+
+/* Laptop Layar Sedang / Tablet Besar */
 @media (max-width: 1200px) {
-    .dt-grid { grid-template-columns: repeat(2, 1fr); }
+    .dt-wrapper {
+        padding: 32px 24px; /* Kurangi padding samping */
+    }
+    .dt-grid { 
+        grid-template-columns: repeat(2, 1fr); /* Dari 3 card jadi 2 card berjajar */
+    }
 }
 
+/* Tablet / Laptop Layar Kecil */
+@media (max-width: 992px) {
+    .dt-header { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 16px; 
+    }
+}
+
+/* HP Layar Besar / Tablet Potrait */
 @media (max-width: 768px) {
-    .dt-grid { grid-template-columns: 1fr; }
-    .dt-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .dt-btn-primary {
+        width: 100%; /* Tombol melebar penuh biar gampang di-klik jempol */
+        justify-content: center;
+    }
+    .dt-grid { 
+        grid-template-columns: 1fr; /* Card jadi 1 kolom (susun ke bawah) */
+        gap: 16px; /* Jarak antar card sedikit dirapatkan di HP */
+    }
+}
+
+/* HP Layar Kecil */
+@media (max-width: 576px) {
+    .dt-wrapper { 
+        padding: 20px 16px; 
+    }
+    .dt-title {
+        font-size: 24px; 
+    }
+    .dt-card {
+        padding: 20px; 
+        border-radius: 20px; 
+    }
+    .dt-stats {
+        flex-direction: column; 
+        gap: 12px;
+    }
+    .dt-highlight h2 {
+        font-size: 20px; 
+    }
+    .dt-card-footer {
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 8px;
+    }
 }

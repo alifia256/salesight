@@ -266,16 +266,91 @@
 .tren-toko-insight-status { margin-top: 6px; }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 992px) {
-    .tren-toko-bottom-cards      { grid-template-columns: 1fr; }
-    .tren-toko-fc-panel          { flex-direction: column; align-items: flex-start; }
-    .tren-toko-fc-rules-grid     { grid-template-columns: repeat(2, 1fr); }
+
+/* Laptop Layar Sedang / Tablet Besar */
+@media (max-width: 1200px) {
+    .tren-toko-content {
+        padding: 32px 24px;
+    }
 }
 
+/* Tablet / Laptop Layar Kecil */
+@media (max-width: 992px) {
+    .tren-toko-bottom-cards { 
+        grid-template-columns: 1fr; /* Card informasi bawah turun jadi 1 kolom */
+    }
+    .tren-toko-fc-panel { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 16px;
+    }
+    .tren-toko-fc-rules-grid { 
+        grid-template-columns: repeat(3, 1fr); /* Aturan FC jadi 3 baris di tablet */
+    }
+}
+
+/* HP Layar Besar / Tablet Potrait */
+@media (max-width: 768px) {
+    .tren-toko-content { 
+        padding: 24px 20px; 
+    }
+    .tren-toko-card-header { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 16px;
+    }
+    .tren-toko-filter-form { 
+        width: 100%; 
+        flex-wrap: wrap;
+    }
+    .tren-toko-select {
+        flex: 1; /* Membuat tombol filter (Tahun/Bulan) memanjang merata */
+    }
+    .tren-toko-fc-rules-grid { 
+        grid-template-columns: repeat(2, 1fr); /* Aturan FC merapat jadi 2 kolom */
+    }
+}
+
+/* HP Layar Kecil */
 @media (max-width: 576px) {
-    .tren-toko-content           { padding: 20px 16px; }
-    .tren-toko-card-header       { flex-direction: column; }
-    .tren-toko-filter-form       { flex-wrap: wrap; }
-    .tren-toko-fc-right          { flex-wrap: wrap; }
-    .tren-toko-fc-rules-grid     { grid-template-columns: 1fr; }
+    .tren-toko-content { 
+        padding: 20px 16px; 
+    }
+    .tren-toko-title {
+        font-size: 24px; /* Mengecilkan ukuran judul halaman */
+    }
+    .tren-toko-card,
+    .tren-toko-info-card,
+    .tren-toko-fc-rules {
+        padding: 20px 16px; /* Mengurangi ruang putih di dalam card */
+    }
+    .tren-toko-chart-wrapper {
+        height: 280px; /* Menurunkan tinggi grafik agar tidak kepanjangan di HP */
+    }
+    .tren-toko-filter-form { 
+        flex-direction: column; 
+    }
+    .tren-toko-select {
+        width: 100%; /* Dropdown filter jadi susun bawah penuh */
+    }
+    .tren-toko-fc-right { 
+        flex-wrap: wrap; 
+        width: 100%;
+    }
+    .tren-toko-fc-rules-grid { 
+        grid-template-columns: 1fr; /* Aturan FC jadi 1 kolom penuh */
+    }
+    .tren-toko-status-item {
+        flex-wrap: wrap; /* Mencegah list toko bertumpuk */
+        gap: 8px;
+    }
+    .tren-toko-status-right {
+        width: 100%;
+        justify-content: space-between;
+        padding-left: 22px; /* Menjorok sejajar dengan teks nama toko */
+    }
+    .tren-toko-insight-box {
+        flex-direction: column; /* Box insight (biru/kuning) susun vertikal */
+        gap: 12px;
+    }
 }
