@@ -169,6 +169,8 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             border: 0.5px solid #e2e8f0;
         }
+
+        
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

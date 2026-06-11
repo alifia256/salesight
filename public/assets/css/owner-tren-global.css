@@ -78,6 +78,14 @@
     height: 350px;
 }
 
+.tren-global-chart-wrapper canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
 /* --- BOTTOM CARDS (Grid 2 Kolom) --- */
 .tren-global-bottom-cards {
     display: grid;

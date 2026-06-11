@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owner-sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owner-dashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/owner-tren-global.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owner-tren-global.css?v=2') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/tren-penjualan-toko.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owner-kontribusi-toko.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owner-kelola-cabang.css') }}">
