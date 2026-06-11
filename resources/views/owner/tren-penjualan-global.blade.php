@@ -141,6 +141,16 @@
     </div>
 
     <style>
+        .tren-global-chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 350px !important; 
+        }
+        @media (max-width: 576px) {
+            .tren-global-chart-wrapper {
+                height: 280px !important; /* Sesuaikan tinggi untuk HP */
+            }
+        }
         .perbandingan-toggle {
             display: flex;
             gap: 4px;
